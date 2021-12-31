@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 def gosub(z, w, x0, w0):
     x = (z % 26) + x0
     if x0 < 0:
@@ -23,6 +25,7 @@ cf = [
     (-10, 13),
 ]
 
+@lru_cache(maxsize=None)
 def check2(t, cf):
     if not cf:
         return []
@@ -36,7 +39,7 @@ def check2(t, cf):
     return None
 
 
-print(''.join(map(str, check2(0, cf[::-1])))[::-1])
+print(''.join(map(str, check2(0, tuple(cf[::-1]))))[::-1])
 
 
 
